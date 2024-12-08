@@ -22,24 +22,21 @@ public class AutonomousCommand extends Command {
     @Override
     public void execute() {
         if (timer.get() < 15) {
-            // Move forward
             driveSubsystem.arcadeDrive();
         } else if (timer.get() >= 15 && timer.get() < 16) {
-            // Turn 180 degrees (simple example, add real turning logic)
-            driveSubsystem.arcadeDrive(0, 1); // Turn right at full speed for 1 second
+            driveSubsystem.arcadeDrive(0, 1);
         } else {
-            // Stop the robot after the turn
             driveSubsystem.arcadeDrive(0, 0);
         }
     }
 
     @Override
     public boolean isFinished() {
-        return timer.get() > 16; // Finish after 16 seconds
+        return timer.get() > 16;
     }
 
     @Override
     public void end(boolean interrupted) {
-        driveSubsystem.arcadeDrive(0, 0); // Stop the robot
+        driveSubsystem.arcadeDrive(0, 0);
     }
 }

@@ -2,7 +2,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Joystick;
@@ -20,18 +19,16 @@ public class DriveSubsystem extends SubsystemBase {
         frontRightMotor.setInverted(true);
         rearLeftMotor.setInverted(false);
         rearRightMotor.setInverted(true);
-        //invert motots based on orientation
+        //invert motors
     }
 
-    public void arcadeDrive(int i, int j) {
+    public void arcadeDrive(double move2, double turn2) {
         double move = joystick.getRawAxis(Constants.DRIVE_AXIS); //y axis
         double turn = joystick.getRawAxis(Constants.TURN_AXIS); //x axis 
 
-        // Arcade drive logic
         double leftSpeed = move + turn;
         double rightSpeed = move - turn;
 
-        // Set motor speeds
         frontLeftMotor.set(leftSpeed);
         rearLeftMotor.set(leftSpeed);
         frontRightMotor.set(rightSpeed);
